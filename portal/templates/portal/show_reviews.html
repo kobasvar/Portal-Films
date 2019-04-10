@@ -1,3 +1,19 @@
-{# To do: implement template. Display a list of MovieReviews.
-   Clicking on a single review should take you to a page to view it in detail.
- #}
+{% extends 'base.html' %}
+{% block title %}Movie Reviews{% endblock %}
+{% block content %}
+<div class="container">
+	<h1>Review search: {{search_text}}</h1>
+	<div class="row">
+		{% for review in reviews %}
+		<div class="col-md-4">
+			<div class="card mb-4 shadow-sm">
+				<strong>{{review.movie.title}} ({{review.movie.year}})</strong><br>
+				{{review.user.first_name}} {{review.user.last_name}}: 
+				 <a href="{% url 'portal:show_review' review.id %}"> "{{review.title}}"
+				  </a> 
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

@@ -86,7 +86,8 @@ def create_reviews(delete=False):
         movie = Movie.objects.get(pk=i)
         text = fake.text()
         rating = randint(1,10)
-        r = MovieReview(user=user,movie=movie,text=text,rating=rating)
+        title = fake.text()
+        r = MovieReview(user=user,movie=movie,text=text,rating=rating, title=title)
         r.save()
     #         user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     # movie = models.ForeignKey(Movie, on_delete=models.CASCADE, null=True)
@@ -111,6 +112,7 @@ def create_votes(delete=False):
 
 # create_users(True)
 # create_movies(True)
-create_reviews(False)
+# MovieReview.objects.all().delete()
+# create_reviews(False)
 # create_comments(True)
 # create_votes(True)

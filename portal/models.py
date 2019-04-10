@@ -31,6 +31,7 @@ class MovieReview(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, null=True)
     text = models.TextField(blank=True, null=True)
     rating = models.IntegerField(choices=RATING_CHOICES, default=5)
+    title = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
         return (self.text)
@@ -48,6 +49,7 @@ class MovieReviewVote(models.Model):
     movie_review = models.ForeignKey(MovieReview, on_delete=models.CASCADE)
     value = models.CharField(max_length=1, choices=VOTE_CHOICES)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
 
 class MovieReviewComment(models.Model):
