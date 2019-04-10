@@ -3,7 +3,14 @@ from django.contrib.auth.models import User
 
 
 class Movie(models.Model):
-    '''To do: implement this model'''
+    # titleid, title, cover url
+    # titleid = models.IntegerField(default=None)
+    title = models.CharField(max_length=50, default=None)
+    cover_url = models.CharField(max_length=100, default=None)
+    year = models.CharField(max_length=4, default=None)
+   
+    def __str__(self):
+        return (self.title)
 
 
 class MovieReview(models.Model):

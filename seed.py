@@ -61,9 +61,13 @@ def create_movies(delete=False):
     for movie in movies:
         print('updating %s' % movie['title'])
         im.update(movie, ['main'])
-        print('done')
+        m = Movie(title=movie['title'], cover_url=movie['cover url'], year=movie['year'])
+        m.save()
+        # print(movie.keys())
+    print('done')
         # To do: use the data in `movie` to populate a
         # new Movie object, then save it.
+        # movie = titleid, title, cover url
 
 
 def create_reviews(delete=False):
@@ -88,7 +92,7 @@ def create_votes(delete=False):
 
 
 create_users(True)
-create_movies(True)
+# create_movies(True)
 create_reviews(True)
 # create_comments(True)
 # create_votes(True)

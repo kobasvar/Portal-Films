@@ -1,30 +1,33 @@
-# ... other imports...
-
-# You might find some useful functions here...
 from . import util
-
+from .models import Movie
+from django.shortcuts import get_object_or_404, redirect, render
+from django.http import HttpResponse, Http404
 
 def index(request):
     '''Show a list of all movies. Click on a movie to view it'''
+    movies = Movie.objects.all()
+    return render(request, 'portal/index.html', {'movies':movies})
 
 
 def show_movie(request, movie_id):
     '''Show the given movie, or raise a 404 error'''
-
+    pass
 
 def show_review(request, review_id):
     '''Show the given review, or raise a 404 error'''
-
+    pass
 
 def search_reviews(request):
     '''Search for reviews using POST data.
     Use a Form object to handle the form and its input.
     If the form does not validate, redirec to the index page.'''
-
+    return render(request, 'portal/index.html', {'movies':movies})
+    
 
 # uncomment this line - find the correct import for it!
 # @login_required
 def add_review(request, movie_id):
+    pass
     '''Add a new MovieReview object for the given Movie.
     GET: display the page with an empty form.
     POST: validate the form. If valid, save the form.
