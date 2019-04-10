@@ -2,18 +2,19 @@
 {% block title %}Review Detail{% endblock %}
 {% block content %}
 <div class="container">
-	<h1>Review detail: {{review.movie.title}} ({{review.movie.year}})</h1>
-	<div class="row">
+	<h1> {{review.movie.title}} ({{review.movie.year}})</h1> <br>
+</div>
+<div class="container">
+	<div class = "row">
 		<div class="col-md-4">
 			<img src="{{review.movie.cover_url}}">
 		</div>
 		<div class="col-md-8">
-				 <strong>Title: {{review.title}}</strong><br>
-				 		<div class="card mb-10 shadow-sm">
-				 			{{review.text}}<br>
-				 		</div>
-				 <strong> By {{review.user.first_name}} {{review.user.last_name}} </strong>
-			</div>
+				<h4>  A review by {{review.user.first_name}} {{review.user.last_name}} <br>
+				"{{review.title}}" </h4>
+				<div class="card mb-10 shadow-sm">
+					{{review.text}}<br>
+				</div>
 		</div>
 	</div>
 </div>

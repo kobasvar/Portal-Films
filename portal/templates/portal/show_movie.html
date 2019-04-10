@@ -1,3 +1,23 @@
-{# To do: implement template. Display a given movie, with image, title, and year.
+<!-- {# To do: implement template. Display a given movie, with image, title, and year.
    Also show a list of reviews for the given movie. Clicking on a single review
-   should take you to a page showing the review in detail. #}
+   should take you to a page showing the review in detail. #} -->
+{% extends 'base.html' %}
+{% block title %}Movie Reviews{% endblock %}
+{% block content %}
+<div class="container">
+	<h1>{{movie.title}} ({{review.movie.year}})</h1>
+	<div class="row">
+		{% for review in reviews %}
+		<div class="col-md-4">
+			<div class="card mb-4 shadow-sm">
+				<strong>{{review.title}} </strong><br>
+				{{review.text}} <br>
+				{{review.user.first_name}} {{review.user.last_name}}: 
+				 <a href="{% url 'portal:show_review' review.id %}"> "{{review.title}}"
+				  </a> 
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

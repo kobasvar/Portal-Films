@@ -11,7 +11,10 @@ def index(request):
 
 def show_movie(request, movie_id):
     '''Show the given movie, or raise a 404 error'''
-    pass
+    movie = Movie.objects.get(pk=movie_id)
+    reviews = movie.moviereview_set.all()
+    return render(request, 'portal/show_movie.html', {'movie':movie, 'reviews': reviews})
+  
 
 def show_review(request, review_id):
     '''Show the given review, or raise a 404 error'''

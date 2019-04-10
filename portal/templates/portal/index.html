@@ -12,7 +12,8 @@
 					<p class="card-header-pills ml-0">{{movie.title}}</p>
 					<div class="d-flex justify-content-between align-items-center">
 						<div class="btn-group">
-							<a class="btn btn-sm btn-outline-primary" href="URL_TO_SHOW_MOVIE_PAGE">Reviews</a>
+							<a class="btn btn-sm btn-outline-primary" 
+							href="{% url 'portal:show_movie' movie.id %}">Reviews</a>
 						</div>
 					</div>
 				</div>
