@@ -27,6 +27,13 @@ class MovieReview(models.Model):
         (9, 9),
         (10, 10)
     )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, null=True)
+    text = models.TextField(blank=True, null=True)
+    rating = models.IntegerField(choices=RATING_CHOICES, default=5)
+
+    def __str__(self):
+        return (self.text)
 
     # To do: add the relevant fields.
 

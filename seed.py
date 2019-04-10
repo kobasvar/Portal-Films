@@ -4,6 +4,7 @@ import os
 import random
 import django
 from faker import Faker
+from random import randint
 import imdb
 
 
@@ -74,6 +75,23 @@ def create_reviews(delete=False):
     if delete:
         MovieReview.objects.all().delete()
 
+    fake =Faker()
+    list = Movie.objects.all()
+    for e in list:
+        print('pk')
+        print(e.pk)
+    for i in range(11,20):
+        user = User.objects.get(pk=randint(7,9))
+        # print(i % 20 + 11)
+        movie = Movie.objects.get(pk=i)
+        text = fake.text()
+        rating = randint(1,10)
+        r = MovieReview(user=user,movie=movie,text=text,rating=rating)
+        r.save()
+    #         user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    # movie = models.ForeignKey(Movie, on_delete=models.CASCADE, null=True)
+    # text = models.TextField(blank=True, null=True)
+    # rating = models.IntegerField(choices=RATING_CHOICES, default=5)
     # To do: create at least one review for each movie.
 
 
@@ -91,8 +109,8 @@ def create_votes(delete=False):
     # To do: create movie votes (up/down)
 
 
-create_users(True)
+# create_users(True)
 # create_movies(True)
-create_reviews(True)
+create_reviews(False)
 # create_comments(True)
 # create_votes(True)
