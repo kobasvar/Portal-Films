@@ -4,20 +4,20 @@
 {% extends 'base.html' %}
 {% block title %}Movie Reviews{% endblock %}
 {% block content %}
-<div class="container">
-	<h1>{{movie.title}} ({{review.movie.year}})</h1>
-	<div class="row">
-		{% for review in reviews %}
-		<div class="col-md-4">
-			<div class="card mb-4 shadow-sm">
-				<strong>{{review.title}} </strong><br>
-				{{review.text}} <br>
-				{{review.user.first_name}} {{review.user.last_name}}: 
-				 <a href="{% url 'portal:show_review' review.id %}"> "{{review.title}}"
-				  </a> 
+	<div class="row container m-4">
+			<div class="col-md-2">
+				<img src={{movie.cover_url}}/>
 			</div>
-		</div>
-		{% endfor %}
+			<div class="col-md-10">
+				<h1>{{movie.title}} ({{movie.year}})</h1>
+				<h2> Reviews </h2>
+				{% for review in reviews %}
+				<div class="card mb-1 shadow-sm">
+					<a href="{% url 'portal:show_review' review.id %}"> "{{review.title}}"
+					  </a> 
+					- by {{review.user.username}}   
+				</div>
+				{% endfor %}
+			</div>
 	</div>
-</div>
 {% endblock %}

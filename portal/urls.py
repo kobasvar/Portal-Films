@@ -6,9 +6,12 @@ app_name = 'portal'
 
 urlpatterns = [
 	path('', views.index, name='index'),
-	path('portal/search_results', views.search_reviews, name='search_reviews'),
-	path('portal/show_review/<int:review_id>', views.show_review, name='show_review'),
-	path('portal/show_movie/<int:movie_id>', views.show_movie, name='show_movie'),
+	path(app_name+'/search_results', views.search_reviews, name='search_reviews'),
+	path(app_name+'/show_review/<int:review_id>', views.show_review, name='show_review'),
+	path(app_name+'/show_movie/<int:movie_id>', views.show_movie, name='show_movie'),
+	path(app_name+'/manage_review/<int:movie_id>', views.manage_review, name='manage_review'),
+	path(app_name+'/save_review', views.save_review, name='save_review'),
+	# path(app_name+'/add_edit_review/', views.add_edit_review, name='add_edit_review'),
 	# path('portal/person/<int:person_id>', views.show_person, name='show_person'),
  #    path('portal/person/add', views.add_person, name='add_person'),
 	# path('portal/person/adddata', views.add_person_data, name='add_person_data'),

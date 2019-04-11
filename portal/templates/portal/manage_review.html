@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Add or Modify Reviews{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>	Add or Modify Reviews </title>
+</head>
+<body>
+	<div class="container">
+		<h1> Add or Modify Reviews </h1>
+		<form method="post" action="{% url 'portal:save_review' %}">
+		  {% csrf_token %}
+		  {{ movie_review_form }}
+		  <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Add</button> 
+		</form>
+	</div>
+</body>
+{% endblock %}
