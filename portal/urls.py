@@ -10,6 +10,7 @@ urlpatterns = [
 	path('show_review/<int:review_id>', views.show_review, name='show_review'),
 	path('show_movie/<int:movie_id>', views.show_movie, name='show_movie'),
 	path('manage_review/<int:movie_id>', views.manage_review, name='manage_review'),
+	path('edit_review/<int:review_id>', views.edit_review, name='edit_review'),
 	# path(app_name+'/save_review', views.save_review, name='save_review'),
 	# path(app_name+'/add_edit_review/', views.add_edit_review, name='add_edit_review'),
 	# path('portal/person/<int:person_id>', views.show_person, name='show_person'),

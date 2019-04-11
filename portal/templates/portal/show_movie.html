@@ -20,6 +20,10 @@
 					<a href="{% url 'portal:show_review' review.id %}"> "{{review.title}}"
 					  </a> 
 					- by {{review.user.username}}   
+				<form action = "{% url 'portal:edit_review' review.id %}">
+					 <input type="submit" class="btn btn-primary" 
+					value="Edit">
+				</form>
 				</div>
 				{% endfor %}
 			</div>
