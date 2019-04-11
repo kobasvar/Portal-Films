@@ -36,30 +36,42 @@ def search_reviews(request):
         # print(request[POST].keys())
 
 def manage_review(request, movie_id):
-    # print(movie_id)
-    movie_review_form = MovieReviewForm()
+    movie = Movie.objects.get(pk=movie_id)
+    if request.method == 'POST':
+        print(request.POST)
+        movie_review_form = MovieReviewForm(request.POST)
+        movie_review_form.movie = movie
+        movie_review_form.user = request.user
+        print('a') 
+        print(movie_review_form.movie)
+        print(movie_review_form.user)
+        # print(movie_review_form.text)
+        # print(movie_review_form.title)
+        # print(movie_review_form.rating)
+        if movie_review_form.is_valid():
+            review = movie_review_form.save(commit=False)
+            # review.user = request.user
+            # review.movie = movie
+            review.save()
+            reviews = movie.moviereview_set.all()
+            return render(request, 'portal/show_movie.html', {'movie':movie, 'reviews': reviews})
+        else:
+            print(movie_review_form.errors)
+            return render(request, 'portal/manage_review.html', 
+            {'movie': movie,
+            'movie_review_form': movie_review_form})   
+    else:
+        movie_review_form = MovieReviewForm(initial={'movie':movie})
+        # movie_review_form.movie = movie
+        # print(movie_review_form.movie)
     # print(movie_review_form)
-    return render(request, 'portal/manage_review.html', 
-        {'movie_id': movie_id,
+        return render(request, 'portal/manage_review.html', 
+        {'movie': movie,
         'movie_review_form': movie_review_form})   
-
-def save_review(request):
-    pass
-    # print(movie_id)
-    # movie_review_form = MovieReviewForm()
-    # return render(request, 'portal/manage_review.html', 
-    #     {movie_id: movie_id,
-    #     movie_review_form: MovieReviewForm})   
-# uncomment this line - find the correct import for it!
-# @login_required
-# def review(request, movie_id):
-#     print('add')
-#     return render(request, 'portal/_add_review.html', {'movie_id': movie_id})   
-#     pass
-    '''Add a new MovieReview object for the given Movie.
-    GET: display the page with an empty form.
-    POST: validate the form. If valid, save the form.
-          (Add the User to the MovieReview after you call save(False).
-          Then call save() with no arguments.)
-          If not valid, render the invalid form.
-          Be sure to validate the movie as well.'''
+    # Add a new MovieReview object for the given Movie.
+    # GET: display the page with an empty form.
+    # POST: validate the form. If valid, save the form.
+    #       (Add the User to the MovieReview after you call save(False).
+    #       Then call save() with no arguments.)
+    #       If not valid, render the invalid form.
+    #       Be sure to validate the movie as well.'''

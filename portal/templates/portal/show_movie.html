@@ -1,4 +1,4 @@
-<!-- {# To do: implement template. Display a given movie, with image, title, and year.
+<!-- {# To do: implement templatesplay a given movie, with image, title, and year.
    Also show a list of reviews for the given movie. Clicking on a single review
    should take you to a page showing the review in detail. #} -->
 {% extends 'base.html' %}
@@ -10,7 +10,11 @@
 			</div>
 			<div class="col-md-10">
 				<h1>{{movie.title}} ({{movie.year}})</h1>
-				<h2> Reviews </h2>
+				<form class="form-inline" action = "{% url 'portal:manage_review' movie.id %}">
+					<h2> Reviews &nbsp;&nbsp;</h2> <input type="submit" class="btn btn-primary" 
+					value="Add">
+				</form>				
+				<br>
 				{% for review in reviews %}
 				<div class="card mb-1 shadow-sm">
 					<a href="{% url 'portal:show_review' review.id %}"> "{{review.title}}"
